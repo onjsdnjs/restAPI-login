@@ -13,6 +13,8 @@ import java.sql.SQLException;
 /**
  * Created by hongjong-wan on 2017. 9. 5..
  */
+
+// 이게 뭐에요???
 @MappedJdbcTypes(JdbcType.VARCHAR)
 public class AuthorityTypeHandler extends BaseTypeHandler<SimpleGrantedAuthority> {
     @Override

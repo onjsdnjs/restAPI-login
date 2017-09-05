@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
+
 /**
  * Created by hongjong-wan on 2017. 9. 3..
  */
@@ -25,7 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
+                .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 .and()
                 .authorizeRequests()
@@ -42,17 +44,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
+//    @Bean
+//    public HttpSessionStrategy httpSessionStrategy() {
+//        return new HttpSessionStrategy();
+//    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.userDetailsService(userService).passwordEncoder(userService.passwordEncoder());
         auth.userDetailsService(userService);//.passwordEncoder(userService.passwordEncoder());
     }
 
-
+    // 이게 뭐에요??? Spring Security에서 사용하는 인증객체
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
+
 
 }
